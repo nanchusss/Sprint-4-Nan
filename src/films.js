@@ -1,46 +1,72 @@
 // Exercise 1: Get the array of all directors.
-function getAllDirectors(array) {
-  let result =  ???;
-  console.log("EXERCICE 1 ->", result);
+function getAllDirectors(movies) {
+  let result = movies.map((directors) => directors.director);
+  console.log('EXERCICE 1 ->', result);
   return result;
 }
 
 // Exercise 2: Get the films of a certain director
-function getMoviesFromDirector(array, director) {
- 
+function getMoviesFromDirector(movies, director) {
+  let result = movies.filter((m) => m.director.includes(director));
+  console.log('Exercise 2', result);
+  return result;
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
-function moviesAverageOfDirector(array, director) {
-  
+function moviesAverageOfDirector(movies, director) {
+  let result = movies.filter((m) => m.director.includes(director));
+  console.log(result.length);
+  let average = result.reduce((a, b) => {
+    return a + b.score;
+  }, 0);
+  console.log(average);
+  console.log(`The average of this director is ${average}`);
+  return average / result.length;
 }
 
-// Exercise 4:  Alphabetic order by title 
-function orderAlphabetically(array) {
-  
+// Exercise 4:  Alphabetic order by title
+function orderAlphabetically(movies) {
+  let order = [];
+  while (order.length <= 20) {
+    let order = movies.map((obj) => {
+      return obj.title;
+    });
+
+    return order.sort();
+  }
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(movies) {
+  let result = movies.map((obj) => {
+    return `${obj.year} , ${obj.title}`;
+  });
 
+  return result.sort();
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
-
+function moviesAverageByCategory(movies, category) {
+  let result = movies.filter((m) => m.genre.includes(category));
+  console.log(result);
+  let average = result.reduce((a, b) => {
+    return a + b.score;
+  }, 0);
+  console.log(average);
+  console.log(`The average of this category is ${average}`);
+  return average / result.length;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
+  let result = movies.map((obj) => {
+    return obj.duration;
+  });
 
+  return result;
 }
-
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-  
-}
-
-
+function bestFilmOfYear() {}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
@@ -53,6 +79,6 @@ if (typeof module !== 'undefined') {
     orderByYear,
     moviesAverageByCategory,
     hoursToMinutes,
-    bestFilmOfYear,
+    bestFilmOfYear
   };
 }
