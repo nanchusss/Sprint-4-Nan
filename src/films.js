@@ -27,9 +27,10 @@ function moviesAverageOfDirector(movies, director) {
 // Exercise 4:  Alphabetic order by title
 function orderAlphabetically(movies) {
   let order = [];
+
   while (order.length <= 20) {
     let order = movies.map((obj) => {
-      return obj.title;
+      return `${obj.title}`;
     });
 
     return order.sort();
@@ -39,10 +40,14 @@ function orderAlphabetically(movies) {
 // Exercise 5: Order by year, ascending
 function orderByYear(movies) {
   let result = movies.map((obj) => {
-    return `${obj.year} , ${obj.title}`;
+    return [`Title: ${obj.title}, Year: ${obj.year}  `];
   });
-
-  return result.sort();
+  // result.length = 20;
+  // return result.sort();
+  //NO sé que falla aquí, porque en teoría era after order return 20 resultados.
+  result.sort();
+  result.length = 20;
+  return result;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
@@ -59,6 +64,7 @@ function moviesAverageByCategory(movies, category) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
+  //no tengo idea! Que difícil
   let result = movies.map((obj) => {
     return obj.duration;
   });
@@ -66,7 +72,21 @@ function hoursToMinutes() {
   return result;
 }
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {}
+function bestFilmOfYear(year) {
+  //Funciona en Run Js...pero no me pasa los tests
+  let winner = [];
+  let result = movies.filter((a) => a.year == year);
+  //console.log(result)
+  result.sort((a, b) => {
+    if (a.score > b.score) {
+      a = result[0];
+      //console.log(a)
+      winner.push(a);
+      // console.log(result[0])
+    }
+  });
+  return winner;
+}
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
