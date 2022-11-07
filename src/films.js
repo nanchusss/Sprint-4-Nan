@@ -1,22 +1,22 @@
 // Exercise 1: Get the array of all directors.
 function getAllDirectors(movies) {
-  let result = movies.map((directors) => directors.director);
+  const result = movies.map((directors) => directors.director);
   console.log('EXERCICE 1 ->', result);
   return result;
 }
 
 // Exercise 2: Get the films of a certain director
 function getMoviesFromDirector(movies, director) {
-  let result = movies.filter((m) => m.director.includes(director));
+  const result = movies.filter((m) => m.director.includes(director));
   console.log('Exercise 2', result);
   return result;
 }
 
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(movies, director) {
-  let result = movies.filter((m) => m.director.includes(director));
+  const result = movies.filter((m) => m.director.includes(director));
   console.log(result.length);
-  let average = result.reduce((a, b) => {
+  const average = result.reduce((a, b) => {
     return a + b.score;
   }, 0);
   console.log(average);
@@ -26,7 +26,7 @@ function moviesAverageOfDirector(movies, director) {
 
 // Exercise 4:  Alphabetic order by title
 function orderAlphabetically(movies) {
-  let order = [];
+  const order = [];
 
   while (order.length <= 20) {
     let order = movies.map((obj) => {
@@ -39,7 +39,7 @@ function orderAlphabetically(movies) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear(movies) {
-  let result = movies.map((obj) => {
+  const result = movies.map((obj) => {
     return [`Title: ${obj.title}, Year: ${obj.year}  `];
   });
   // result.length = 20;
@@ -52,9 +52,9 @@ function orderByYear(movies) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(movies, category) {
-  let result = movies.filter((m) => m.genre.includes(category));
+  const result = movies.filter((m) => m.genre.includes(category));
   console.log(result);
-  let average = result.reduce((a, b) => {
+  const average = result.reduce((a, b) => {
     return a + b.score;
   }, 0);
   console.log(average);
