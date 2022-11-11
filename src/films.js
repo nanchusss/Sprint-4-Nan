@@ -32,22 +32,24 @@ function orderAlphabetically(movies) {
     let order = movies.map((obj) => {
       return `${obj.title}`;
     });
-
+    console.log(order.sort());
     return order.sort();
   }
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(movies) {
+  const moviesInOrder = [];
   const result = movies.map((obj) => {
-    return [`Title: ${obj.title}, Year: ${obj.year}  `];
+    moviesInOrder.push(obj);
+    //console.log(moviesInOrder)
+
+    // return [(`${obj.year} , ${obj.title}`)]
   });
-  // result.length = 20;
-  // return result.sort();
-  //NO sé que falla aquí, porque en teoría era after order return 20 resultados.
-  result.sort();
-  result.length = 20;
-  return result;
+  moviesInOrder.length = 20;
+  return moviesInOrder.sort((a, b) => {
+    return a.year - b.year;
+  });
 }
 
 // Exercise 6: Calculate the average of the movies in a category
@@ -65,20 +67,17 @@ function moviesAverageByCategory(movies, category) {
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(movies) {
   const result = movies.map((obj) => {
-    //return [`The film ${obj.title} has a duration of ${(obj.duration.slice(3, -3)*1) + (obj.duration[0]*60) } minutes`]
-
     obj.duration = obj.duration.slice(3, -3) * 1 + obj.duration[0] * 60;
     console.log(obj);
     return obj;
-    //return (obj.duration[0]*60) + dur;
   });
-  console.log(result);
+  // console.log(result);
 
   return result;
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear(year) {
+function bestFilmOfYear(movies, year) {
   //Funciona en Run Js...pero no me pasa los tests
   const winner = [];
   const result = movies.filter((a) => a.year == year);
@@ -86,11 +85,12 @@ function bestFilmOfYear(year) {
   result.sort((a, b) => {
     if (a.score > b.score) {
       a = result[0];
-      //console.log(a)
+      console.log(a);
       winner.push(a);
-      // console.log(result[0])
+      console.log(result[0]);
     }
   });
+  console.log(winner);
   return winner;
 }
 
