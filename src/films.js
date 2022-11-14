@@ -26,42 +26,42 @@ function moviesAverageOfDirector(movies, director) {
 
 // Exercise 4:  Alphabetic order by title
 function orderAlphabetically(movies) {
-  const order = [];
-
-  while (order.length <= 20) {
-    let order = movies.map((obj) => {
-      return `${obj.title}`;
-    });
-    console.log(order.sort());
-    return order.sort();
+  const order = movies.map((obj) => {
+    return obj.title;
+  });
+  order.sort();
+  //console.log(order.sort());
+  if (order.length > 20) {
+    order.length = 20;
   }
+  return order;
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(movies) {
-  const moviesInOrder = [];
-  const result = movies.map((obj) => {
-    moviesInOrder.push(obj);
-    //console.log(moviesInOrder)
-
-    // return [(`${obj.year} , ${obj.title}`)]
-  });
-  moviesInOrder.length = 20;
-  return moviesInOrder.sort((a, b) => {
+  const order = movies.sort(function (a, b) {
     return a.year - b.year;
   });
+  order.sort(function (a, b) {
+    if (a.title === b.title) {
+      return a.year - b.year;
+    }
+  });
+  //console.log(order.sort());
+  return order;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(movies, category) {
-  const result = movies.filter((m) => m.genre.includes(category));
+  let result = movies.filter((m) => m.genre.includes(category));
   console.log(result);
-  const average = result.reduce((a, b) => {
+  let average = result.reduce((a, b) => {
     return a + b.score;
   }, 0);
-  console.log(average);
-  console.log(`The average of this category is ${average}`);
-  return average / result.length;
+  average = average / result.length;
+  //console.log(average);
+  //console.log(`The average of this category is ${average}`);
+  return average;
 }
 
 // Exercise 7: Modify the duration of movies to minutes
@@ -71,7 +71,7 @@ function hoursToMinutes(movies) {
     console.log(obj);
     return obj;
   });
-  // console.log(result);
+  console.log(result.length);
 
   return result;
 }
