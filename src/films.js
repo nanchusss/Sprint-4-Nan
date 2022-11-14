@@ -34,6 +34,7 @@ function orderAlphabetically(movies) {
   if (order.length > 20) {
     order.length = 20;
   }
+  console.log(order);
   return order;
 }
 
@@ -47,7 +48,7 @@ function orderByYear(movies) {
       return a.year - b.year;
     }
   });
-  //console.log(order.sort());
+  console.log(order);
   return order;
 }
 
@@ -68,30 +69,29 @@ function moviesAverageByCategory(movies, category) {
 function hoursToMinutes(movies) {
   const result = movies.map((obj) => {
     obj.duration = obj.duration.slice(3, -3) * 1 + obj.duration[0] * 60;
-    console.log(obj);
     return obj;
   });
-  console.log(result.length);
+  console.log(result);
 
   return result;
 }
 
 // Exercise 8: Get the best film of a year
 function bestFilmOfYear(movies, year) {
-  //Funciona en Run Js...pero no me pasa los tests
-  const winner = [];
-  const result = movies.filter((a) => a.year == year);
+  let winner = [];
+
+  let result = movies.filter((a) => a.year == year);
+
   //console.log(result)
   result.sort((a, b) => {
-    if (a.score > b.score) {
-      a = result[0];
-      console.log(a);
-      winner.push(a);
-      console.log(result[0]);
-    }
+    return a.average - b.average;
+
+    // console.log(result[0])
   });
-  console.log(winner);
-  return winner;
+  //console.log(result)
+
+  winner = result[0];
+  return [winner];
 }
 
 // The following is required to make unit tests work.
