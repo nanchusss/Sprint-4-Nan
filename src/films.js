@@ -40,14 +40,11 @@ function orderAlphabetically(movies) {
 
 // Exercise 5: Order by year, ascending
 function orderByYear(movies) {
-  const order = movies.sort(function (a, b) {
+  const order = movies.map((a) => a);
+  order.sort(function (a, b) {
     return a.year - b.year;
   });
-  order.sort(function (a, b) {
-    if (a.title === b.title) {
-      return a.year - b.year;
-    }
-  });
+  order.sort((a, b) => (a.year === b.year ? (a.title > b.title ? 1 : -1) : 0));
   console.log(order);
   return order;
 }
@@ -91,6 +88,7 @@ function bestFilmOfYear(movies, year) {
   //console.log(result)
 
   winner = result[0];
+  console.log(winner);
   return [winner];
 }
 
