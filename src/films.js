@@ -51,12 +51,16 @@ function orderByYear(movies) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(movies, category) {
-  let result = movies.filter((m) => m.genre.includes(category));
-  console.log(result);
-  let average = result.reduce((a, b) => {
+  const result = movies.filter((m) => m.genre.includes(category));
+  //console.log(result);
+  const filtered = result.filter((a) => a.score != '');
+  console.log(filtered);
+
+  let average = filtered.reduce((a, b) => {
     return a + b.score;
   }, 0);
-  average = average / result.length;
+
+  average = average / filtered.length;
   //console.log(average);
   //console.log(`The average of this category is ${average}`);
   return average;
